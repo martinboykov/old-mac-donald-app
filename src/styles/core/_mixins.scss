@@ -1,0 +1,41 @@
+@mixin clearfix() {
+    &::after {
+        display: block;
+        clear: both;
+        content: '';
+    }
+}
+// Rem for font-size
+
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+@mixin mq($point) {
+    @if $point == $xl {
+        @media (max-width: $xl) {
+            @content;
+        }
+    } @else if $point == $lg {
+        @media (max-width: $lg) {
+            @content;
+        }
+    } @else if $point == $md {
+        @media (max-width: $md) {
+            @content;
+        }
+    } @else if $point == $sm {
+        @media (max-width: $sm) {
+            @content;
+        }
+    }
+}
+@mixin transition($selector: all, $duration: 0.2s, $function: ease-in-out) {
+    transition: $selector $duration $function;
+}

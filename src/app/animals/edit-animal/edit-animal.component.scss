@@ -1,0 +1,212 @@
+@import './core/variables';
+@import './core/mixins';
+
+$form-label: $text-color-black;
+$form-label-focus: $theme-color;
+$form-line: $text-color-black;
+$form-line-focus: $form-label-focus;
+$form-input-text: $form-label;
+$form-input-bottom-offset: 1rem;
+$form-input-text-focus: $form-label-focus;
+$form-field-invalid-foreground: map-get($colors, danger);
+$dropdown-hoverBackground: #e8eaf6;
+$dropdown-selectedBackground: #9fa8da;
+$labelOffset: 2.5rem;
+$textInputPaddingTopBottom: .5rem;
+.wrapper-animal-form {
+    display: grid;
+    grid-gap: $spacer * 2;
+    grid-template-columns: repeat(3, max-content);
+    &:last-of-type {
+        margin-bottom: 3rem;
+    }
+}
+
+.form-field {
+    position: relative;
+    display: block;
+    color: $form-label;
+    padding: $labelOffset 0 $form-input-bottom-offset 0;
+    .bar {
+        position: relative;
+        display: block;
+        width: 100%;
+        color: $theme-color;
+    }
+    .bar:before,
+    .bar:after {
+        position: absolute;
+        content: '';
+        height: 2.5px;
+        width: 0;
+        bottom: -1px;
+        background: $theme-color;
+        @include transition(all, 0.2s, ease);
+    }
+    .bar:before {
+        left: 50%;
+    }
+    .bar:after {
+        right: 50%;
+    }
+    input:focus ~ .bar:before,
+    input:focus ~ .bar:after {
+        width: 50%;
+    }
+
+    .form-field-label {
+        position: absolute;
+        display: block;
+        bottom: 1rem;
+        left: 0px;
+        @include transition(all, 0.2s, ease);
+        pointer-events: none;
+        cursor: text;
+    }
+
+    input {
+        position: relative;
+        display: block;
+        width: 100%;
+        line-height: 2.5rem;
+        padding: $textInputPaddingTopBottom 0 0 0;
+        border: none;
+        background-color: $body-bg;
+        color: $form-input-text;
+        border-bottom: 1px solid $form-line;
+        outline: none;
+
+        &:invalid {
+            outline: none;
+            box-shadow: none;
+        }
+        &:valid,
+        &:focus {
+            & ~ .form-field-label {
+                bottom: 3.5rem;
+                font-size: 1.4rem;
+            }
+        }
+        &:focus {
+            outline: none;
+            color: $form-input-text-focus;
+            & ~ .form-field-label {
+                color: $form-label-focus;
+            }
+        }
+    }
+    .form-error-messages {
+        position: absolute;
+        left: 0;
+        bottom: -1rem;
+        color: var(--danger);
+        font-size: $font-size-base / 1.3;
+    }
+}
+
+.del-animal-group {
+    display: block;
+    position: relative;
+    .btn {
+        position: absolute;
+        top: 2.5rem;
+        left: 0rem;
+        height: 3rem;
+        padding: 0 $spacer * 1.5;
+        border-radius: 50%;
+        background-color: var(--danger);
+        @include mq($sm) {
+            top: 4rem;
+        }
+        span {
+            display: none;
+        }
+        &:after {
+            content: '\2715';
+            color: $text-color-white;
+            position: absolute;
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.6rem;
+            top: 50%;
+            left: 50%;
+            display: block;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+.btn.add-animal {
+    display: block;
+    // margin-top: $spacer * 3;
+}
+.btn.save-animals {
+    margin-bottom: $spacer * 1.5;
+}
+@include mq($sm) {
+    .wrapper-animal-form {
+        grid-gap: $spacer * 1;
+        grid-template-columns: 1fr;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.5);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 1rem;
+    }
+    .form-field {
+        padding: $labelOffset 0 $spacer 0;
+        margin-top: -$spacer * 1;
+        @include transition();
+        &:nth-child(2) {
+            margin-bottom: $spacer * 2;
+        }
+        .form-field-label {
+            bottom: 1rem;
+            font-size: $font-size-base-mobile/1.1;
+        }
+
+        input {
+            padding: $textInputPaddingTopBottom 0 0 0;
+            font-size: $font-size-base-mobile;
+            line-height: 3rem;
+            &:valid,
+            &:focus {
+                & ~ .form-field-label {
+                    bottom: 4rem;
+                    font-size: $font-size-base-mobile/1.3;
+                }
+            }
+        }
+        .form-error-messages {
+            font-size: $font-size-base-mobile/1.3;
+        }
+    }
+
+    .del-animal-group {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        @include transition();
+
+        .btn {
+            position: relative;
+            top: 0rem;
+            right: 0rem;
+            height: $spacer * 4;
+            padding: 0 $spacer * 2;
+            background-color: var(--danger);
+            span {
+                display: none;
+            }
+            // &:after {
+            //     content: '';
+            // }
+        }
+    }
+    .btn.add-animal {
+    }
+    .btn.save-animals {
+        margin-bottom: 3rem;
+    }
+}

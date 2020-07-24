@@ -1,0 +1,34 @@
+@import './core/variables';
+@import './core/mixins';
+
+.card-img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 20rem;
+    background-image: url('../../../assets/images/macdonald-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    img {
+        height: 50%;
+    }
+}
+.card-body {
+    padding: $spacer $spacer * 2 $spacer * 2;
+}
+.card-title {
+    text-transform: uppercase;
+    margin-bottom: $spacer;
+}
+.card-text {
+    font-size: 1.4rem;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    @include mq($sm) {
+      font-size: 1.8rem;
+    }
+}

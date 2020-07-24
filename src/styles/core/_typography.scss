@@ -1,0 +1,62 @@
+// Typography
+//
+// 1. Remove top margins from headings
+//    By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
+//    margin for easier control within type scales as it avoids margin collapsing.
+%heading {
+    margin-top: 0; // 1
+    font-family: $headings-font-family;
+    font-weight: $font-weight-bold;
+    line-height: 1.2;
+}
+h1 {
+    @extend %heading;
+    margin-bottom: $spacer * 1.5;
+    font-size: $h1-font-size;
+}
+h2 {
+    @extend %heading;
+    margin-bottom: $spacer * 1.4;
+    font-size: $h2-font-size;
+}
+h3 {
+    @extend %heading;
+    margin-bottom: $spacer * 1.3;
+    font-size: $h4-font-size;
+}
+h4 {
+    @extend %heading;
+    margin-bottom: $spacer * 1.2;
+    font-size: $h4-font-size;
+}
+h5 {
+    @extend %heading;
+    margin-bottom: $spacer * 1.1;
+    font-size: $h5-font-size;
+}
+h6 {
+    @extend %heading;
+    margin-bottom: $spacer;
+    font-size: $h6-font-size;
+}
+
+@include mq($sm) {
+    h1 {
+        font-size: $h1-font-size * 1.3;
+    }
+    h2 {
+        font-size: $h2-font-size * 1.3;
+    }
+    h3 {
+        font-size: $h4-font-size * 1.3;
+    }
+    h4 {
+        font-size: $h4-font-size * 1.3;
+    }
+    h5 {
+        font-size: $h5-font-size * 1.3;
+    }
+    h6 {
+        font-size: $h6-font-size * 1.3;
+    }
+}

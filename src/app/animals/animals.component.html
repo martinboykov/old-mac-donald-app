@@ -1,0 +1,6 @@
+<button class="btn" [routerLink]="['/edit-animal']">Add Animal</button>
+<div class="content-wrapper">
+  <ng-container *ngFor="let animal of animals">
+    <app-animal [animal]="animal" class="card"> </app-animal>
+  </ng-container>
+</div>

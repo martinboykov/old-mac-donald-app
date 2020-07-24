@@ -1,0 +1,30 @@
+@import './core/variables';
+@import './core/mixins';
+header {
+    background: var(--primary);
+}
+nav {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    img {
+        width: 300px;
+
+    }
+}
+@include mq($sm) {
+    nav {
+        height: 8rem;
+        display: flex;
+        align-items: center;
+    }
+    .logo {
+        img {
+            width: 360px;
+
+        }
+    }
+}

@@ -1,0 +1,6 @@
+:root {
+    @each $name, $color in $colors {
+        --#{$name}: #{$color};
+    }
+    --header-height: 6rem;
+}

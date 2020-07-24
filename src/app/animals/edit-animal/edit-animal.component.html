@@ -1,0 +1,55 @@
+<form [formGroup]="animalForm"
+      (ngSubmit)="onSubmit()">
+  <div formArrayName="animals">
+    <button class="btn save-animals"
+            type="submit"
+            title="Save Animals"
+            [disabled]="!animalForm.valid">Save Animals</button>
+    <ng-container *ngFor="let animal of animals?.controls; let i = index">
+      <div class="wrapper-animal-form"
+           [formGroup]="animal">
+        <div class="form-field">
+          <input type="text"
+                 required
+                 name="text"
+                 id="name"
+                 formControlName="name" />
+          <label class="form-field-label"
+                 for="name">Name</label>
+          <span class="bar"></span>
+          <div class="form-error-messages">
+            <div *ngIf="animal['controls'].name.touched && animal['controls'].name.errors"
+                 class="error-block">*Please provide valid name</div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <input type="text"
+                 required
+                 name="sound"
+                 id="sound"
+                 formControlName="sound" />
+          <label class="form-field-label"
+                 for="sound">Sound</label>
+          <span class="bar"></span>
+          <div class="form-error-messages">
+            <div *ngIf="animal['controls'].sound.touched && animal['controls'].sound.errors"
+                 class="error-block">*Please provide valid sound</div>
+          </div>
+        </div>
+        <div class="del-animal-group">
+          <button class="btn del-animal"
+                  type="button"
+                  title="Remove Animal"
+                  (click)="delAnimal(i)"><span>Remove Animal</span></button>
+        </div>
+
+      </div>
+    </ng-container>
+    <button class="btn add-animal"
+            type="button"
+            title="Add new Animals"
+            (click)="addAnimalForm()">Add new animal</button>
+  </div>
+
+</form>

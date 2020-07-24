@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "verses": {
+    "old-mac-donald-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/verses",
+            "outputPath": "dist/old-mac-donald-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/main.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -66,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "verses:build"
+            "browserTarget": "old-mac-donald-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "verses:build:production"
+              "browserTarget": "old-mac-donald-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "verses:build"
+            "browserTarget": "old-mac-donald-app:build"
           }
         },
         "test": {
@@ -92,9 +97,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/main.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "src/app/testing/**/*",
+              "src/app/animals/shared/testing/**/*"
+            ]
           }
         },
         "lint": {
@@ -114,15 +129,24 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "verses:serve"
+            "devServerTarget": "old-mac-donald-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "verses:serve:production"
+              "devServerTarget": "old-mac-donald-app:serve:production"
             }
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/old-mac-donald-app/",
+            "name": "Martin Martinov",
+            "email": "m.boykov.martinov@gmail.com"
           }
         }
       }
-    }},
-  "defaultProject": "verses"
+    }
+  },
+  "defaultProject": "old-mac-donald-app"
 }

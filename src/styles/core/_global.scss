@@ -1,0 +1,191 @@
+/* Global styles */
+
+::selection {
+    background: lighten(map-get($colors, primary), 20%);
+    color: var(--white);
+    text-shadow: 0px 1px 1px rgba(map-get($colors, text-dark), 0.6);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: 62.5%; // 10px/ 1rem
+}
+
+body {
+    height: 100%;
+    min-width: $min;
+    margin: 0;
+
+    font-family: $font-default;
+    font-size: 1.6rem;
+    font-weight: $font-weight-normal;
+    line-height: $lh-default;
+    color: $body-color;
+
+    background-color: $body-bg;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba($body-bg, 0); // 4
+    @include mq($sm) {
+        font-size: 2rem;
+    }
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    &:hover,
+    &:active {
+        text-decoration: none;
+        cursor: pointer;
+    }
+}
+p {
+    margin: 0;
+}
+// Lists
+
+ol,
+ul {
+    padding-left: $spacer * 2;
+}
+
+ol,
+ul,
+dl {
+    margin-top: 0;
+    margin-bottom: $spacer;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+    margin-bottom: 0;
+}
+
+li {
+    margin-bottom: $spacer * 0.5;
+}
+// Custom Classes
+.container {
+    width: 100%;
+    max-width: $xl;
+    margin: 0 auto;
+    padding: 0rem $spacer * 2 0rem;
+    @include transition(padding, 0.4s, ease);
+    @include mq($sm) {
+        max-width: 100%;
+        padding: 0rem $spacer 0rem;
+    }
+}
+.content-wrapper {
+    display: grid;
+    grid-gap: $spacer * 2;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    @include mq($sm) {
+        grid-gap: $spacer * 1.5;
+    }
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 2rem;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.5);
+    // transition: all 0.4s ease-in-out;
+
+    overflow: hidden;
+    position: relative;
+    transition-duration: 0.4s;
+    transition-property: box-shadow, filter;
+    transition-timing-function: cubic-bezier(0, 0.73, 0.48, 1);
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+    &:hover {
+        box-shadow: 0px 14px 12px 0px rgba(0, 0, 0, 0.3);
+        filter: brightness(1.1) contrast(0.95) saturate(1);
+        cursor: pointer;
+    }
+
+    &:hover .card-shine {
+        opacity: 0.2;
+        transform: rotateZ(210deg) translateX(12%) translateY(32%);
+    }
+    & img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+    @include mq($sm) {
+        &:hover {
+            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.5);
+            filter: none;
+        }
+        .card-shine {
+            display: none;
+        }
+    }
+}
+
+.card-shine {
+    background: linear-gradient(
+        to bottom,
+        rgba(235, 245, 255, 0) 0%,
+        rgba(235, 245, 255, 0.85) 12px,
+        rgba(235, 245, 255, 0.75) 20%,
+        rgba(210, 210, 210, 0) 60%,
+        rgba(10, 10, 10, 0) 85%,
+        rgba(10, 10, 10, 0.8) 100%
+    );
+    opacity: 0.01;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateZ(212deg) translateX(12%) translateY(59%);
+    transition-duration: 0.6s;
+    transition-property: opacity, transform;
+    transition-timing-function: cubic-bezier(0, 0.73, 0.48, 1);
+    width: 220%;
+    height: 100%;
+    z-index: 1;
+}
+.btn {
+    height: 3.5rem;
+    padding: 0 $spacer * 1;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: $theme-color;
+    color: $text-color-white;
+    text-transform: uppercase;
+    outline: none;
+    cursor: pointer;
+    @include transition();
+    &:hover,
+    &:focus {
+        background-color: darken(map-get($colors, primary), 15%);
+    }
+    &:focus {
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
+    }
+    &:disabled {
+        background-color: lighten(map-get($colors, primary), 15%);
+        cursor: auto;
+    }
+    @include mq($sm) {
+        height: $spacer * 4;
+        padding: 0 $spacer * 2;
+        font-size: $font-size-base-mobile;
+    }
+}
