@@ -28,9 +28,8 @@
 1. Install dependencies `npm install`
 2. For developer environment run `ng serve`
 3. For testing the application `ng test`
-
+4. For deployment in github pages run `ng deploy`
    - edit the `deploy` configuration in `angular.json` width your data
-
-There is CI/CD configuration file at .github/workflows/gh-action.yaml, which is testing, building and deploying the app in windows, linux and macOs on every push and pull-request from/to master branch.
+5. There is CI/CD configuration file at .github/workflows/gh-action.yaml, which is testing, building and deploying the app in windows, linux and macOs on every push and pull-request from/to master branch.
 
 You can see the deployed app on github-pages from the demo above!
